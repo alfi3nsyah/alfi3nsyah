@@ -7,7 +7,7 @@ source.include_exts = py,png,jpg,kv,atlas,wav
 version = 1.0
 
 # Kunci dependensi stabil
-requirements = python3==3.11.5,kivy==2.2.1,requests,urllib3,charset_normalizer,idna,certifi
+requirements = python3,kivy,requests,urllib3,charset_normalizer,idna,certifi
 
 orientation = portrait
 fullscreen = 0
