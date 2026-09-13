@@ -6,8 +6,11 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,wav
 version = 1.0
 
-# Kunci dependensi stabil
+# Dependensi aplikasi
 requirements = python3,kivy,requests,urllib3,charset_normalizer,idna,certifi
+
+# Kunci python-for-android ke versi stabil agar tidak memaksa Python 3.14
+p4a.branch = release-2024.01.21
 
 orientation = portrait
 fullscreen = 0
