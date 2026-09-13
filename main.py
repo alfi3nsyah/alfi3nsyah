@@ -160,7 +160,8 @@ class SeismicSentinelApp(App):
             pass
 
         candidates = []
-        for url in [URL_AUTOGEMPA, URL_TERKINI, URL_DIRASAKAN]:
+        for url in [URL_DIRASAKAN, URL_TERKINI, URL_AUTOGEMPA]:
+            
             try:
                 res = requests.get(url, timeout=3)
                 if res.status_code == 200:
@@ -187,7 +188,8 @@ class SeismicSentinelApp(App):
                         matched_quake = {
                             "mag": mag,
                             "wilayah": wilayah,
-                            "waktu": f"{d.get('Tanggal', '')} | {d.get('Jam', '')}",
+                            "waktu": d.get("DateTime") or f"{d.get('Tanggal', '')} | {d.get('Jam', '')}".strip(" | "),
+                            
                             "kedalaman": d.get("Kedalaman", "-"),
                             "lat": lat,
                             "lon": lon,
