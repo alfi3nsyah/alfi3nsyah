@@ -23,16 +23,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev ccache
 
-      - name: Install Stable Buildozer & Cython
+      - name: Install Buildozer & Dependencies
         run: |
           pip install --upgrade pip setuptools wheel
           pip install "cython<3.0.0"
-          pip install "buildozer==1.5.0"
-          pip install "python-for-android==2024.1.21"
+          pip install git+https://github.com/kivy/buildozer.git@1.5.0
 
       - name: Build APK with Buildozer
         run: |
-          yes | buildozer -v android debug
+          yes | buildozer android debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
