@@ -198,12 +198,12 @@ class SeismicSentinelApp(App):
                 except ValueError:
                     continue
 
-        self.quake_data = matched_quake
-        if matched_quake:
-            cid = f"{matched_quake['waktu']}_{matched_quake['mag']}"
-            if self.last_id and self.last_id != cid:
-                self.play_sound()
-            self.last_id = cid
+            if matched_quake:
+                self.quake_data = matched_quake
+                cid = f"{matched_quake['waktu']}_{matched_quake['mag']}"
+                  if self.last_id and self.last_id != cid:
+               self.play_sound()
+               self.last_id = cid
 
     def update_ui_timer(self, dt):
         now_wib = datetime.now().strftime("%H:%M:%S WIB")
