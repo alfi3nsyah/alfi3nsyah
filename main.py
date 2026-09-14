@@ -104,7 +104,7 @@ def is_target_zone(lat, lon, wilayah):
     ]
     if any(k in w for k in keywords):
         return True
-    return -8.8 <= lat <= -5.5 and 105.0 <= lon <= 109.2
+        return -9.5 <= lat <= -5.0 and 104.5 <= lon <= 109.0
 
 
 class SeismicSentinelApp(App):
