@@ -1,4 +1,4 @@
-name: Build Android APK
+herename: Build Android APK
 
 on:
   push:
@@ -35,17 +35,13 @@ jobs:
           pip install "cython<3.0.0"
           pip install buildozer
 
-      - name: Pre-accept Android SDK Licenses
-        run: |
-          mkdir -p ~/.buildozer/android/platform/android-sdk/licenses
-          echo -e "\n24333f8a63b6825ea9c5514f83c2829b004d1fee" > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-license
-          echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-preview-license
-          echo -e "\nd975f751698a77b662f1254ddbeed3901e976f5a" > ~/.buildozer/android/platform/android-sdk/licenses/intel-android-extra-license
-
       - name: Build APK with Buildozer
         env:
           JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
+          ANDROID_HOME: /usr/local/lib/android/sdk
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
         run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
           buildozer android debug
 
       - name: Upload APK Artifact
@@ -53,4 +49,3 @@ jobs:
         with:
           name: SeismicSentinel-APK
           path: bin/*.apk
-
